@@ -7,6 +7,8 @@ public class Model {
 	private Tile[][] contents; // All tiles.
 	private Tile emptyTile; // The empty space.
 
+	private int gameTime; // The number of seconds the game has been played for so far
+
 	public Model(int rows, int cols) {
 		ROWS = rows;
 		COLS = cols;
@@ -30,6 +32,9 @@ public class Model {
 		// Set last tile face to null to mark empty space
 		emptyTile = contents[ROWS - 1][COLS - 1];
 		emptyTile.setFace(null);
+
+		// Reset game timer
+		gameTime = 0;
 	}
 
 	// Shuffle the tiles around to create a new game.
@@ -94,5 +99,13 @@ public class Model {
 
 	public int getCols() {
 		return COLS;
+	}
+
+	public int getGameTime() {
+		return gameTime;
+	}
+
+	public void incrementGameTime() {
+		gameTime += 1;
 	}
 }
