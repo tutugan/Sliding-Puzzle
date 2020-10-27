@@ -95,4 +95,15 @@ public class Model {
 	public int getCols() {
 		return COLS;
 	}
+
+	public int getMoveCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public void resetMoveCounter() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

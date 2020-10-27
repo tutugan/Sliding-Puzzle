@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import uk.ac.man.cs.puzzle.logic.Model;
@@ -18,6 +19,7 @@ public class GUI extends JPanel {
 	private GraphicsPanel puzzleGraphics;
 	private int ROWS;
 	private int COLS;
+	JLabel currentMovesLabel;
 
 	public GUI(int rows, int cols) {
 		// Create a button. Add a listener to it.
