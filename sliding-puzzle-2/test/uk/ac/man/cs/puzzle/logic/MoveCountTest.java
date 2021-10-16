@@ -37,6 +37,7 @@ public class MoveCountTest {
 		assertEquals(2, puzzleModel.getMoveCount());
 		puzzleModel.moveTile(1, 1);
 		assertEquals(3, puzzleModel.getMoveCount());
+		
 	}
 
 	@Test
@@ -60,6 +61,7 @@ public class MoveCountTest {
 	@Test
 	public void shouldResetMovesToZeroWhenGameReset() {
 		// Move a tile we know can move in the game we are using for testing
+		puzzleModel.resetMoveCounter();
 		puzzleModel.moveTile(0, 0);
 		assertEquals(1, puzzleModel.getMoveCount());
 
