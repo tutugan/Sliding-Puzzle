@@ -50,14 +50,13 @@ public class GUI extends JPanel{
 		puzzleModel = new Model(ROWS, COLS);
 		puzzleGraphics = new GraphicsPanel(puzzleModel, rows, cols);
 				
-		JPanel movesPanel = new JPanel();
-		movesPanel.setLayout(new FlowLayout());
-		movesPanel.add(moveLabel);
-		movesPanel.add(currentMovesLabel);
+		JPanel gameTimerPanel = new JPanel();
+		gameTimerPanel.setLayout(new FlowLayout());
+		gameTimerPanel.add(moveLabel);
+		gameTimerPanel.add(currentMovesLabel);
 
 
 		// Create game timer panel
-		JPanel gameTimerPanel = new JPanel();
 		gameTimerPanel.setLayout(new FlowLayout());
 		gameTimerPanel.add(timerLabel);
 		gameTimerPanel.add(currentTimeLabel);
@@ -68,7 +67,6 @@ public class GUI extends JPanel{
 		this.add(controlPanel, BorderLayout.NORTH);
 		this.add(puzzleGraphics, BorderLayout.CENTER);
 		this.add(gameTimerPanel, BorderLayout.SOUTH);
-		this.add(movesPanel, BorderLayout.SOUTH);
 		// Set up the Swing timer
 		gameTimer = new Timer(1000, new ActionListener() {
 			@Override
@@ -87,7 +85,7 @@ public class GUI extends JPanel{
 		// Start the timer for the first game round
 		gameTimer.start();
 
-		this.add(movesPanel, BorderLayout.SOUTH);
+
 		
 		
 		
