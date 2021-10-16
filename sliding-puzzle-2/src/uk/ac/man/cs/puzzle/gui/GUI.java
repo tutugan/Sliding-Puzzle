@@ -29,7 +29,10 @@ public class GUI extends JPanel{
 		// Create a button. Add a listener to it.
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new NewGameAction());
-
+		
+		JLabel moveLabel= new JLabel("Moves:", JLabel.LEADING);
+		JLabel label1=new JLabel ("0", JLabel.CENTER);
+		currentMovesLabel=label1;
 		// Create game timer components
 		JLabel timerLabel = new JLabel("Time: ", JLabel.LEADING);
 		final JLabel currentTimeLabel = new JLabel(" __ ", JLabel.CENTER);
@@ -51,10 +54,7 @@ public class GUI extends JPanel{
 		movesPanel.setLayout(new FlowLayout());
 		movesPanel.add(moveLabel);
 		movesPanel.add(currentMovesLabel);
-		JPanel movesPanel = new JPanel();
-		movesPanel.setLayout(new FlowLayout());
-		movesPanel.add(moveLabel);
-		movesPanel.add(currentMovesLabel);
+
 
 		// Create game timer panel
 		JPanel gameTimerPanel = new JPanel();
@@ -87,6 +87,10 @@ public class GUI extends JPanel{
 		// Start the timer for the first game round
 		gameTimer.start();
 
+		this.add(movesPanel, BorderLayout.SOUTH);
+		
+		
+		
 	}
 
 	Model getPuzzleModel() {
@@ -108,10 +112,6 @@ public class GUI extends JPanel{
 		return gameTimer;
 	}
 	
-	public static void increase() {
-		counter++;
-		currentMovesLabel.setText(String.valueOf(counter));
-	}
 	
 	
 	
