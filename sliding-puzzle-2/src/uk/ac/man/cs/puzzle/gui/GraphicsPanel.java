@@ -22,7 +22,6 @@ public class GraphicsPanel extends JPanel implements MouseListener {
 	private Font biggerFont;
 
 	private Model puzzleModel;
-
 	public GraphicsPanel(Model puzzleModel, int rows, int cols) {
 		biggerFont = new Font("SansSerif", Font.BOLD, CELL_SIZE / 2);
 
@@ -34,7 +33,9 @@ public class GraphicsPanel extends JPanel implements MouseListener {
 		this.addMouseListener(this);
 		this.puzzleModel = puzzleModel;
 		puzzleModel.shuffle();
+		
 	}
+	
 	
 	public int[] getTileRCFromCoordinates(MouseEvent e) {
 		int[] tile = { e.getX() / CELL_SIZE, e.getY() / CELL_SIZE };
@@ -68,6 +69,9 @@ public class GraphicsPanel extends JPanel implements MouseListener {
 		if (!puzzleModel.moveTile(row, col)) {
 			// moveTile moves tile if legal, else returns false.
 			Toolkit.getDefaultToolkit().beep();
+		}
+		else {
+			GUI.increase();
 		}
 
 		this.repaint(); // Show any updates to model.

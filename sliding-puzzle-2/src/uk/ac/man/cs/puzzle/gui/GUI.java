@@ -13,7 +13,7 @@ import javax.swing.Timer;
 
 import uk.ac.man.cs.puzzle.logic.Model;
 
-public class GUI extends JPanel {
+public class GUI extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	private final Model puzzleModel;
@@ -21,12 +21,18 @@ public class GUI extends JPanel {
 	private Timer gameTimer;
 	private int ROWS;
 	private int COLS;
+	private static int counter;
+	static JLabel currentMovesLabel;
+	JLabel label1;
 
-	public GUI(int rows, int cols) {
+	public GUI(int rows, int cols)  {
 		// Create a button. Add a listener to it.
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new NewGameAction());
-
+		
+		JLabel moveLabel= new JLabel("Moves:", JLabel.LEADING);
+		JLabel label1=new JLabel ("0", JLabel.CENTER);
+		currentMovesLabel=label1;
 		// Create game timer components
 		JLabel timerLabel = new JLabel("Time: ", JLabel.LEADING);
 		final JLabel currentTimeLabel = new JLabel(" __ ", JLabel.CENTER);
@@ -43,9 +49,14 @@ public class GUI extends JPanel {
 		COLS = cols;
 		puzzleModel = new Model(ROWS, COLS);
 		puzzleGraphics = new GraphicsPanel(puzzleModel, rows, cols);
+				
+		JPanel gameTimerPanel = new JPanel();
+		gameTimerPanel.setLayout(new FlowLayout());
+		gameTimerPanel.add(moveLabel);
+		gameTimerPanel.add(currentMovesLabel);
+
 
 		// Create game timer panel
-		JPanel gameTimerPanel = new JPanel();
 		gameTimerPanel.setLayout(new FlowLayout());
 		gameTimerPanel.add(timerLabel);
 		gameTimerPanel.add(currentTimeLabel);
@@ -56,7 +67,6 @@ public class GUI extends JPanel {
 		this.add(controlPanel, BorderLayout.NORTH);
 		this.add(puzzleGraphics, BorderLayout.CENTER);
 		this.add(gameTimerPanel, BorderLayout.SOUTH);
-
 		// Set up the Swing timer
 		gameTimer = new Timer(1000, new ActionListener() {
 			@Override
@@ -75,6 +85,10 @@ public class GUI extends JPanel {
 		// Start the timer for the first game round
 		gameTimer.start();
 
+
+		
+		
+		
 	}
 
 	Model getPuzzleModel() {
@@ -84,14 +98,27 @@ public class GUI extends JPanel {
 	GraphicsPanel getGraphicsPanel() {
 		return puzzleGraphics;
 	}
-
+	
+	public static void increase() {
+		counter++;
+		currentMovesLabel.setText(String.valueOf(counter));
+	}
+	
+	
+	
 	Timer getGameTimer() {
 		return gameTimer;
 	}
-
+	
+	
+	
+	
 	public class NewGameAction implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			
 			puzzleModel.reset();
+			counter=puzzleModel.getMoveCount();
+			currentMovesLabel.setText(String.valueOf(counter));
 			puzzleModel.shuffle();
 			puzzleGraphics.repaint();
 			puzzleGraphics.setBackground(Color.black);
